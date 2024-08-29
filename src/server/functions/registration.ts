@@ -1,5 +1,7 @@
 'use server';
 import { serverRegistrationSchema } from "@/server/schemas/registration-schema";
+import { sql } from 'drizzle-orm';
+import { eq } from 'drizzle-orm/expressions';
 import { db } from '@/server/db';
 import { registrationTable } from '@/server/db/schema';
 import { type State } from "@/types";
@@ -27,6 +29,47 @@ export async function createRegistration (
       graduationYear,
       ...data
     }} = validatedPayload;
+
+    // check if email exist
+    const {email} = data;
+    const [emailRecord] = await db.select({
+        emailCount: sql`COUNT(*)`
+    })
+    .from(registrationTable)
+    .where(eq(registrationTable.email, email));
+
+    const emailExists = emailRecord?.emailCount as number > 0;
+    if (emailExists) {
+      return {
+        status: "error",
+        message: "Duplicate data",
+        errors: [{
+          path: "email",
+          message: `Email ${email} telah terdaftar`,
+        }],
+      };
+    }
+
+    // check if phoneNumber exist
+    const {phoneNumber} = data;
+    const [phoneNumberRecord] = await db.select({
+        phoneNumberCount: sql`COUNT(*)`
+    })
+    .from(registrationTable)
+    .where(eq(registrationTable.phoneNumber, phoneNumber));
+
+    const phoneNumberExists = phoneNumberRecord?.phoneNumberCount as number > 0;
+    if (phoneNumberExists) {
+      return {
+        status: "error",
+        message: "Duplicate data",
+        errors: [{
+          path: "phoneNumber",
+          message: `Nomor hp ${email} telah terdaftar`,
+        }],
+      };
+    }
+
 
     try{
       await db.insert(registrationTable).values({...data, 

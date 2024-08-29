@@ -20,11 +20,6 @@ function App() {
   }
   return (<>
       <Navbar />
-      <style
-        dangerouslySetInnerHTML={{
-          __html: '    div.logo-wrapper {        padding-left: 5px;    }    .mainpos-header .navbar .navbar-header .title {        margin-top: 1px;        padding-right: 0px;    }    .mainpos-header .navbar .navbar-header .title p {        font-size: 15px;        font-weight: bold;    }    .mainpos-header .navbar .navbar-header .navbar-toggle {        /*margin-top: 65px;*/    }    .carousel {        height: 600px;    }    .carousel-inner{        z-index: +1;    }    .carousel-inner>.item>img {        display: block;        height: 600px;        max-height: 600px;        min-width: 100%;        width: 100%;        max-width: 100%;        object-fit: cover;    }    .carousel-caption .btn-daftar {        font-size: 24px;        color: #FFFFFF;        margin: 2em 0;        padding: 0.5em 1em;    }    .carousel-caption .btn-login {        background: none;        font-size: 12px;        margin: 2em 0 1.5em;        padding: 1em 1.5em    }    .carousel-upper {        position: absolute;        top: 50px;        width: 100%;    }'
-        }}
-      />
       <section className="mainpos-content">
         <div className="container">
           <div className="row ">
@@ -74,11 +69,6 @@ function App() {
                             {form()}
                           </fieldset>
                       </div>
-                      <style
-                        dangerouslySetInnerHTML={{
-                          __html: '      .f1-step.activated .f1-step-icon:hover {        background-color: #FFF;        color: #61B634;    }    .has-error .select2-container--focus .select2-selection, .has-error .select2-container--open .select2-selection, .has-error .select2-container .select2-selection {        border: 1px solid #a94442 !important;        box-shadow: none;    }'
-                        }}
-                      />
                     </div>
                   </div>
                 </div>
@@ -92,11 +82,6 @@ function App() {
         rel="stylesheet"
       />
       <WaIcon />
-      <style
-        dangerouslySetInnerHTML={{
-          __html: '        .user-guide {            position: relative;            width: 220px;            height: 60px;        }        .user-guide a {            position: absolute;            top: 0;            left: 0;            z-index: 1;        }        .user-guide p {            position: absolute;            top: 20px;            left: 60px;            width: 150px;            font-size: 12px;            text-align: center;            z-index: 2;        }'
-        }}
-      />
       <Footer />
   </>
   );
