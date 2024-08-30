@@ -1,6 +1,9 @@
 import type { Metadata } from 'next';
 import Header from '@/app/components/header';
+import Footer from '@/app/components/footer';
+import WaIcon from '@/app/components/wa-icon';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import Navbar from '@/app/components/navbar';
 
 export const metadata: Metadata = {
   title: 'Create Next App',
@@ -15,7 +18,12 @@ export default function RootLayout({
   return (
     <html lang="en">
       <Header />
-      <body>{children}</body>
+      <body>
+        <Navbar />
+        {children}
+        <WaIcon />
+        <Footer />
+      </body>
     </html>
   );
 }

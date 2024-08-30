@@ -30,11 +30,6 @@ export default function Header(){
         href="https://fonts.googleapis.com/css2?family=Material+Icons+Round"
         rel="stylesheet"
       />
-      <link
-        rel="stylesheet"
-        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
-        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
-      />
       <script src="https://assets.siakadcloud.com/spmbfront/assets/default/js/jquery.min.js" async/>
       <script src="https://assets.siakadcloud.com/spmbfront/assets/default/js/bootstrap.min.js" async/>
       <style

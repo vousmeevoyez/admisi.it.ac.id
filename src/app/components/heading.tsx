@@ -1,4 +1,4 @@
-export default function Heading({text = 'Pendaftaran'}: {text?: string}){
+export default function Heading({h1, h2}: {h1: string, h2?: string}){
   return (
               <div className="row">
                 <div
@@ -6,8 +6,12 @@ export default function Heading({text = 'Pendaftaran'}: {text?: string}){
                   translate="no"
                 >
                   <h1 className="main-header text-center" style={{fontSize: '24px'}}>
-          {text}
+                    {h1}
                   </h1>
+                  <br/>
+                  {h2&&<p className="text-center text-warning" style={{fontSize:'18px'}}>
+                    {h2}
+                  </p>}
                 </div>
               </div>
   );
