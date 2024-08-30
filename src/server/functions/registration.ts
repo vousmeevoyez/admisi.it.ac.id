@@ -78,9 +78,9 @@ export async function createRegistration (
         reportScore: Number(reportScore),
         graduationYear: Number(graduationYear),
         createdAt: new Date()
-      }).returning();
+      }).returning()
 
-      id = record[0]?.id;
+      id = record[0]?.id.toString();
     }catch(error){
       return {
         status: "error",
@@ -88,7 +88,9 @@ export async function createRegistration (
       };
     }
 
+    if(!id) throw new Error('id not found')
+
     const {fullName, studyProgram} = data;
-    const query = new URLSearchParams({phoneNumber, fullName, studyProgram, id: id?.toString()!}).toString();
+    const query = new URLSearchParams({phoneNumber, fullName, studyProgram, id}).toString()
     redirect(`/payment?${query}`);
 };

@@ -1,4 +1,5 @@
 'use client';
+import { Suspense } from 'react';
 import { useSearchParams } from 'next/navigation';
 import Heading from '@/app/components/heading';
 import Invoice2 from '@/app/components/invoice2';
@@ -27,10 +28,10 @@ function PaymentPage() {
                         <div className="row">
                           {/* Pass parameters to Invoice2 or use as needed */}
                           <Invoice2
-                            fullName={fullName as string}
-                            phoneNumber={phoneNumber as string}
-                            studyProgram={studyProgram as string}
-                            id={id as string}
+                            fullName={fullName!}
+                            phoneNumber={phoneNumber!}
+                            studyProgram={studyProgram!}
+                            id={id!}
                           />
                         </div>
                       </div>
@@ -46,4 +47,8 @@ function PaymentPage() {
   );
 }
 
-export default PaymentPage;
+export default function (){
+  return <Suspense fallback={<div>Loading...</div>}>
+    <PaymentPage/>
+  </Suspense> 
+};

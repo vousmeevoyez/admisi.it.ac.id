@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import { Container, Row, Col, Card, Button, Collapse } from 'react-bootstrap';
+import Timer from '@/app/components/timer';
 
 type PaymentMethodProps = {
   fullName: string;
@@ -20,9 +21,8 @@ function getCurrentDateFormatted() : string{
 }
 
 function CopyButton ({ text }: {text: string}) {
-  const handleCopy = () => {
+  const handleCopy = () => 
     navigator.clipboard.writeText(text);
-  };
 
   return <Button onClick={handleCopy} variant="outline-primary" >
     <svg width="16" height="16" fill="currentColor" className="bi bi-clipboard me-1" viewBox="0 0 16 16">
@@ -59,6 +59,7 @@ function WhatsAppButton({ text }: { text: string }) {
 
 
 function PaymentMethod({}){
+    // eslint-disable-next-line @typescript-eslint/consistent-indexed-object-style
     const [paymentMethodVisible, setPaymentMethodVisible] = useState<{[key: number]: boolean}>({});
     const methods: {title: string, instructions: string[]}[] = [
       {
@@ -152,9 +153,10 @@ function PaymentPage({id, fullName, phoneNumber, studyProgram}: PaymentMethodPro
         <Card.Body>
           <Row>
             <Col>
-              <h3>Jumlah tagihan</h3>
+              <h3 className="">Jumlah tagihan</h3>
               <h2>Rp 300.000,-</h2>
               <p className="text-muted mb-1">{`ID Pendaftaran: ${id}#${getCurrentDateFormatted()}`}</p>
+              <Timer initialTime={21600}/>
             </Col>
             {/*<Col className="text-end">
               <Dropdown>
