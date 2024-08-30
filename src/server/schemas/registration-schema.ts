@@ -23,7 +23,7 @@ const baseRegistrationSchema = {
 
 export const registrationSchema = zfd.formData({
   ...baseRegistrationSchema,
-  isChecked: z.boolean()
+  isChecked: z.literal<boolean>(true)
 });
 
 export const serverRegistrationSchema = zfd.formData(baseRegistrationSchema);

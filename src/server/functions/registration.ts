@@ -1,4 +1,5 @@
 'use server';
+import { redirect } from 'next/navigation'
 import { serverRegistrationSchema } from "@/server/schemas/registration-schema";
 import { sql } from 'drizzle-orm';
 import { eq } from 'drizzle-orm/expressions';
@@ -65,18 +66,21 @@ export async function createRegistration (
         message: "Duplicate data",
         errors: [{
           path: "phoneNumber",
-          message: `Nomor hp ${email} telah terdaftar`,
+          message: `Nomor hp ${phoneNumber} telah terdaftar`,
         }],
       };
     }
 
+    let id;
 
     try{
-      await db.insert(registrationTable).values({...data, 
+      const record = await db.insert(registrationTable).values({...data, 
         reportScore: Number(reportScore),
         graduationYear: Number(graduationYear),
         createdAt: new Date()
-      });
+      }).returning()
+
+      id = record[0]?.id.toString();
     }catch(error){
       return {
         status: "error",
@@ -84,8 +88,9 @@ export async function createRegistration (
       };
     }
 
-    return {
-      "status" : "success",
-      "message": "Data berhasil di submit"
-    }
+    if(!id) throw new Error('id not found')
+
+    const {fullName, studyProgram} = data;
+    const query = new URLSearchParams({phoneNumber, fullName, studyProgram, id}).toString()
+    redirect(`/payment?${query}`);
 };

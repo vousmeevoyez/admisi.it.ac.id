@@ -1,8 +1,7 @@
 import Heading from '@/app/components/heading';
-import Navbar from '@/app/components/navbar';
-import Footer from '@/app/components/footer';
-import WaIcon from '@/app/components/wa-icon';
-import {Form} from '@/app/components/form';
+import Banner from '@/app/components/banner';
+import { Form } from '@/app/components/form';
+import SideBanner from '@/app/components/side-banner';
 
 export const runtime = 'edge';
 
@@ -15,74 +14,69 @@ export const metadata = {
 };
 
 function App() {
-  const form = () => {
-      return <Form/>
-  }
+  const h1 = 'Pendaftaran';
+  const h2 = 'Jalur Akademik S1 Reguler Perkuliahan Senin - Jumat';
+
   return (<>
-      <Navbar />
-      <section className="mainpos-content">
-        <div className="container">
-          <div className="row ">
-            <div className="pos-main-content">
-              <section className="pos-content-body col-md-9 form-page" style={{width: '100%'}}>
-                <div className="body-pmb">
-                  <Heading />
-                  <div className="row">
-                    <div className="pos-content-top01">
-                      <div className="col-md-12 text-center">
-                    <div className="f1-steps d-flex justify-content-center">
-                      <div className="f1-progress daftar" style={{width: "75%"}}>
-                        <div
-                          className="f1-progress-line"
-                          data-now-value="25"
-                          data-number-of-steps="2"
-                          style={{
-                            width: '50%'
-                          }}
-                        />
-                      </div>
-                      <div className="f1-step daftar activated">
-                        <a
-                          className="f1-step-icon"
-                          href="/daftar/jalur"
-                        >
-                          1
-                        </a>
-                        <p>
-                          Jalur Pendaftaran
-                        </p>
-                      </div>
-                      <div className="f1-step daftar active">
-                        <div className="f1-step-icon">
-                          2
-                        </div>
-                        <p>
-                          Pendaftaran & Pembayaran
-                        </p>
-                      </div>
-                    </div>
-                          <fieldset
+    <Banner />
+    <section className="mainpos-content">
+      <div className="container">
+        <div className="row ">
+          <div className="pos-main-content">
+            <section className="pos-content-body col-md-9 form-page">
+              <div className="body-pmb">
+                <Heading h1={h1} h2={h2}/>
+                <div className="row">
+                  <div className="pos-content-top01">
+                    <div className="col-md-12 text-center">
+                      <div className="f1-steps d-flex justify-content-center">
+                        <div className="f1-progress daftar" style={{ width: "75%" }}>
+                          <div
+                            className="f1-progress-line"
+                            data-now-value="25"
+                            data-number-of-steps="2"
                             style={{
-                              display: 'block'
+                              width: '50%'
                             }}
+                          />
+                        </div>
+                        <div className="f1-step daftar activated">
+                          <a
+                            className="f1-step-icon"
+                            href="/daftar/jalur"
                           >
-                            {form()}
-                          </fieldset>
+                            1
+                          </a>
+                          <p>
+                            Jalur Pendaftaran
+                          </p>
+                        </div>
+                        <div className="f1-step daftar active">
+                          <div className="f1-step-icon">
+                            2
+                          </div>
+                          <p>
+                            Pendaftaran & Pembayaran
+                          </p>
+                        </div>
                       </div>
+                      <fieldset
+                        style={{
+                          display: 'block'
+                        }}
+                      >
+                        <Form />
+                      </fieldset>
                     </div>
                   </div>
                 </div>
-              </section>
-            </div>
+              </div>
+            </section>
+            <SideBanner />
           </div>
         </div>
-      </section>
-      <link
-        href="https://assets.siakadcloud.com/spmbfront/assets/default/../default/css/style.wa.min.css"
-        rel="stylesheet"
-      />
-      <WaIcon />
-      <Footer />
+      </div>
+    </section>
   </>
   );
 }

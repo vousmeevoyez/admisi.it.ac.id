@@ -271,7 +271,7 @@ function FormContent({
               {...register("studyProgram")}
             >
               <option value="">Pilih program studi</option>
-              {watchSchoolSubject === SchoolSubjectEnum.IPA ? 
+              {watchSchoolSubject !== SchoolSubjectEnum.IPS ? 
               Object.values(scienceNeededStudiesProgram).map((program) => (
                 <option key={program} value={program}>
                   {program}
@@ -361,6 +361,7 @@ export function Form() {
   const {
     register,
     formState: { isValid, errors },
+    getValues,
     setError,
     watch,
     reset,
@@ -382,7 +383,6 @@ export function Form() {
       });
     }
     if (state.status === "success") {
-      alert(state.message);
       reset();
     }
   }, [state, setError, reset]);

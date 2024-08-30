@@ -1,5 +1,11 @@
 export default function WaIcon(){
-    return (<div
+    return (
+    <>
+    <link
+      href="https://assets.siakadcloud.com/spmbfront/assets/default/../default/css/style.wa.min.css"
+      rel="stylesheet"
+    />
+    <div
       className="okewa-style_1  okewa-right   branded"
       id="okewa"
     >
@@ -34,5 +40,7 @@ export default function WaIcon(){
           />
         </div>
       </a>
-    </div>);
+    </div>
+    </>
+    );
 }
