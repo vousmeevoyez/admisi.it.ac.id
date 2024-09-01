@@ -8,6 +8,7 @@ type PaymentMethodProps = {
   fullName: string;
   phoneNumber: string;
   studyProgram: string;
+  uniqueCode: string;
   id: string;
 }
 
@@ -38,7 +39,7 @@ function WhatsAppButton({ text }: { text: string }) {
     // Encode the text to be URL-safe
     const encodedText = encodeURIComponent(text);
     // Construct the WhatsApp URL
-    const url = `https://wa.me/6282210888432?text=${encodedText}`;
+    const url = `https://wa.me/6285198968101?text=${encodedText}`;
     // Open the URL in a new tab
     window.open(url, '_blank');
   };
@@ -129,7 +130,7 @@ function PaymentMethod({}){
       })
 }
 
-function PaymentPage({id, fullName, phoneNumber, studyProgram}: PaymentMethodProps) {
+function PaymentPage({id, fullName, phoneNumber, studyProgram, uniqueCode}: PaymentMethodProps) {
   const [virtualAccountOpen, setVirtualAccountOpen] = useState(true);
   const [bniOpen, setBniOpen] = useState(true);
 
@@ -154,8 +155,9 @@ function PaymentPage({id, fullName, phoneNumber, studyProgram}: PaymentMethodPro
           <Row>
             <Col>
               <h3 className="">Jumlah tagihan</h3>
-              <h2>Rp 300.000,-</h2>
+              <h2>{`Rp 300.${uniqueCode},-`}</h2>
               <p className="text-muted mb-1">{`ID Pendaftaran: ${id}#${getCurrentDateFormatted()}`}</p>
+              <p className="text-info mb-1">{`Kode unik pembayaran: ${uniqueCode}`}</p>
               <Timer initialTime={21600}/>
             </Col>
             {/*<Col className="text-end">
@@ -182,6 +184,7 @@ function PaymentPage({id, fullName, phoneNumber, studyProgram}: PaymentMethodPro
             <Col>
               <h4>Rincian tagihan</h4>
               <h5>Biaya Formulir: Rp 300.000,-</h5>
+              <h5>{`Tambahan kode unik: Rp ${uniqueCode},-`}</h5>
             </Col>
             <Col>
               <h4>Informasi pendaftar</h4>

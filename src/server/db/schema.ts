@@ -14,6 +14,7 @@ export const registrationTable = sqliteTable('registration', {
   graduationYear: integer('graduationYear').notNull(),
   studyProgram: text('studyProgram').notNull(),
   referalCode: text('referalCode'),
-  isPaymentConfirmed: integer('isPaymentConfirmed').notNull().default(0), // This acts as a boolean
+  uniqueCode: integer('isPaymentConfirmed').notNull().default(0),
+  isPaymentConfirmed: integer('isPaymentConfirmed').notNull().default(0),
   createdAt: integer("createdAt", { mode: "timestamp" }),
 });

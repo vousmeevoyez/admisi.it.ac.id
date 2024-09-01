@@ -2,10 +2,43 @@
 import { redirect } from 'next/navigation'
 import { serverRegistrationSchema } from "@/server/schemas/registration-schema";
 import { sql } from 'drizzle-orm';
-import { eq } from 'drizzle-orm/expressions';
+import { eq, and, between } from 'drizzle-orm/expressions';
 import { db } from '@/server/db';
 import { registrationTable } from '@/server/db/schema';
 import { type State } from "@/types";
+
+async function generateUniqueCode(maxAttempts = 10): Promise<number> {
+  let attempts = 0;
+
+  while (attempts < maxAttempts) {
+    const uniqueCode = Math.floor(Math.random() * (999 - 100 + 1)) + 100;
+
+    const startOfDay = new Date();
+    startOfDay.setHours(0, 0, 0, 0);
+    const endOfDay = new Date(startOfDay);
+    endOfDay.setDate(startOfDay.getDate() + 1);
+
+    const [result] = await db.select({
+      codeCount: sql<number>`COUNT(*)`.as('codeCount')
+    })
+    .from(registrationTable)
+    .where(and(
+      eq(registrationTable.uniqueCode, uniqueCode),
+      between(registrationTable.createdAt, startOfDay, endOfDay),
+      eq(registrationTable.isPaymentConfirmed, 0)
+    ));
+
+    const codeCount = result?.codeCount ?? 0;
+
+    if (codeCount === 0) {
+      return uniqueCode;
+    }
+
+    attempts++;
+  }
+
+  throw new Error('Unable to generate a unique code after maximum attempts');
+}
 
 export async function createRegistration (
   prevState: State,
@@ -72,12 +105,14 @@ export async function createRegistration (
     }
 
     let id;
+    const uniqueCode = await generateUniqueCode();
 
     try{
       const record = await db.insert(registrationTable).values({...data, 
         reportScore: Number(reportScore),
         graduationYear: Number(graduationYear),
-        createdAt: new Date()
+        createdAt: new Date(),
+        uniqueCode,
       }).returning()
 
       id = record[0]?.id.toString();
@@ -91,6 +126,6 @@ export async function createRegistration (
     if(!id) throw new Error('id not found')
 
     const {fullName, studyProgram} = data;
-    const query = new URLSearchParams({phoneNumber, fullName, studyProgram, id}).toString()
+    const query = new URLSearchParams({phoneNumber, fullName, studyProgram, id, uniqueCode: uniqueCode.toString()}).toString()
     redirect(`/payment?${query}`);
 };

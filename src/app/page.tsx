@@ -48,7 +48,7 @@ function App() {
                             1
                           </a>
                           <p>
-                            Jalur Pendaftaran
+                            Pendaftaran
                           </p>
                         </div>
                         <div className="f1-step daftar active">
@@ -56,7 +56,7 @@ function App() {
                             2
                           </div>
                           <p>
-                            Pendaftaran & Pembayaran
+                            Pembayaran
                           </p>
                         </div>
                       </div>

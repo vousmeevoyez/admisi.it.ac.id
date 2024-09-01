@@ -99,21 +99,6 @@ export default function Footer() {
                 <hr />
                 <ul>
                   <li>
-                    <a href="https://pmb.iti.ac.id/informasi/52/cara-bayar-tagihan-melalui-shopeetokopedia-dan-virtual-account-bni">
-                      Cara Bayar Tagihan Melalui Shopee,Tokopedia dan Virtual Account BNI
-                    </a>
-                  </li>
-                  <li>
-                    <a href="https://pmb.iti.ac.id/informasi/48/RPL-Solusi-S1-Lulus-Cepat-Biaya-Terjangkau">
-                      LULUS S1 Lebih Cepat dengan Rekognisi Pembelajaran Lampau (RPL)
-                    </a>
-                  </li>
-                  <li>
-                    <a href="https://pmb.iti.ac.id/informasi/40/program-studi-program-profesi-insinyur">
-                      Program Studi Program Profesi Insinyur (PSPPI)
-                    </a>
-                  </li>
-                  <li>
                     <a href="https://pmb.iti.ac.id/informasi/34/leaflet-brosur-institut-teknologi-indonesia">
                       Leaflet / Brosur Institut Teknologi Indonesia terbaru
                     </a>

@@ -10,6 +10,7 @@ function PaymentPage() {
   const phoneNumber = searchParams.get('phoneNumber')
   const studyProgram = searchParams.get('studyProgram')
   const id = searchParams.get('id')
+  const uniqueCode = searchParams.get('uniqueCode')
 
   const h1 = 'Pembayaran';
 
@@ -31,6 +32,7 @@ function PaymentPage() {
                             fullName={fullName!}
                             phoneNumber={phoneNumber!}
                             studyProgram={studyProgram!}
+                            uniqueCode={uniqueCode!}
                             id={id!}
                           />
                         </div>

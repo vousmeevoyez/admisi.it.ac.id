@@ -16,7 +16,7 @@ export default function WaIcon(){
         }}
       />
       <a
-        href="https://wa.me/6282210888432?text=Saya tanya terkait pendaftaran"
+        href="https://wa.me/6285198968101?text=Saya tanya terkait pendaftaran"
         style={{
           filter: 'unset'
         }}

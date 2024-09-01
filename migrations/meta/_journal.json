@@ -15,6 +15,20 @@
       "when": 1725018464503,
       "tag": "0001_purple_dust",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "6",
+      "when": 1725031687180,
+      "tag": "0002_parallel_leech",
+      "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "6",
+      "when": 1725031784294,
+      "tag": "0003_faithful_thanos",
+      "breakpoints": true
     }
   ]
 }
